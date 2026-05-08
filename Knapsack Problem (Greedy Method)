@@ -1,0 +1,36 @@
+def knapsack(wt, profit, cap):
+    
+    included_elements = []
+    total_profit = 0
+    
+    items = [(i, wt[i], profit[i], profit[i]/wt[i]) for i in range(len(wt))]
+    
+    items.sort(key = lambda x : x[3], reverse = True)
+    
+    print(items)
+    
+    for index, wt, profit, ratio in items:
+        
+        if cap >= wt:
+            included_elements.append((index, 1))
+            total_profit = total_profit + profit
+            cap = cap - wt
+            
+        else:
+            frac = cap / wt
+            included_elements.append((index, frac))
+            total_profit = total_profit + (profit * frac)
+            break
+            
+    return included_elements, total_profit
+
+
+wt = [50, 60, 35]
+profit = [35, 45, 60]
+
+cap = 100
+
+included_elements, total_profit = knapsack(wt, profit, cap)
+
+print("Included items are:", included_elements)
+print("Total Profit is:", total_profit)
