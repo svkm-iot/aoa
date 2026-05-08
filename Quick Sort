@@ -1,0 +1,28 @@
+def quick_sort(arr):
+    
+    if len(arr) <= 1:
+        return arr
+    
+    pivot = arr[0]
+    
+    left = []
+    right = []
+    
+    for i in arr[1:]:
+        
+        if i <= pivot:
+            left.append(i)
+            
+        else:
+            right.append(i)
+            
+    return quick_sort(left) + [pivot] + quick_sort(right)
+
+
+arr = [40, 20, 10, 50, 6, 18]
+
+print("Original Array:", arr)
+
+sorted_array = quick_sort(arr)
+
+print("Sorted Array:", sorted_array)
