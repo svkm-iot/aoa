@@ -1,32 +1,43 @@
-def binary_search(arr, key):
-    
-    low = 0
-    high = len(arr) - 1
-    
-    while low <= high:
-        
-        mid = (low + high) // 2
-        
-        if arr[mid] == key:
-            return mid
-        
-        elif arr[mid] < key:
-            low = mid + 1
-            
-        else:
-            high = mid - 1
-            
+#iterative approach
+def binary_search(arr ,target):
+ low = 0
+ high = len(arr)-1
+ while(low <= high):
+    mid = (low+high)//2
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] < target:
+        low = mid+1
+    else:
+        high = mid-1
     return -1
+my_list = [1,2,5,10,15]
+target = 5
 
-
-arr = [10, 20, 30, 40, 50]
-
-key = int(input("Enter element to search: "))
-
-result = binary_search(arr, key)
+result = binary_search(my_list,target)
 
 if result != -1:
-    print("Element found at index:", result)
-    
+    print("Element found at index: ",result)
 else:
     print("Element not found")
+
+
+#recursive approach
+def bin_search(arr ,key, low, high):
+    if low > high:
+        return -1
+    while(low <= high):
+        mid = (low+high)//2
+        if key == arr[mid]:
+            return mid
+        elif key < arr[mid]:
+            return bin_search(arr, key, low, mid)
+        else:
+            return bin_search(arr, key, mid+1, high)
+key = 50
+arr = [10,20,30,40,50]
+res = bin_search(arr, key, 0, len(arr)-1)
+if res == -1:
+    print("Element not found")
+else:
+    print("Element found at index: ",res)
